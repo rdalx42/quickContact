@@ -51,5 +51,5 @@ export function showNotification(
 		setTimeout(() => {
 			notification.remove();
 		}, 180);
-	}, 3000);
+	}, 100000);
 }

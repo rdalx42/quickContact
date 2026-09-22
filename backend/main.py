@@ -30,9 +30,15 @@ def status():
     return jsonify({"status": True})
 
 @app.route("/send", methods=["POST"])
-@limiter.limit("1 per minute")
+@limiter.limit("10 per minute")
 def send():
     info = request.get_json()
+
+    if not data["enabled"]:
+        return jsonify({
+            "status":False,
+            "err":"Not enabled yet.",
+        }), 400
 
     if not info:
         return jsonify({
